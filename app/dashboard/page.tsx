@@ -84,7 +84,7 @@ export default function DashboardHome() {
           </div>
           <h1 className="mt-3 text-2xl font-semibold tracking-tight">Welcome{profile?.name ? `, ${profile.name}` : ""} 👋</h1>
           <p className="mt-1 text-sm text-[rgb(var(--muted))]">
-            Manage listings, orders, and your profile. Everything updates instantly with optimistic UI.
+            Manage listings, orders, and your profile. Everything updates instantly.
           </p>
         </div>
       </motion.section>
