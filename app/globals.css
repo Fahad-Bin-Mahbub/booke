@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --bg0: 248 250 252;
+  --bg1: 240 244 255;
+  --fg: 12 16 30;
+
+  --card: 255 255 255;
+  --muted: 100 116 139;
+
+  --brand: 99 102 241; /* indigo */
+  --brand2: 236 72 153; /* pink */
+  --mint: 34 211 238; /* cyan */
+  --good: 34 197 94;
+  --warn: 245 158 11;
+  --bad: 239 68 68;
+
+  --ring: 99 102 241;
+  --radius: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg0: 9 12 21;
+    --bg1: 14 17 30;
+    --fg: 236 241 255;
+    --card: 17 23 39;
+    --muted: 148 163 184;
+    --ring: 99 102 241;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--fg));
+  background:
+    radial-gradient(1200px 600px at 10% 0%, rgba(var(--mint) / 0.16), transparent 60%),
+    radial-gradient(900px 480px at 90% 10%, rgba(var(--brand2) / 0.12), transparent 60%),
+    linear-gradient(180deg, rgb(var(--bg0)), rgb(var(--bg1)));
+}
+
+/* nicer selection */
+::selection {
+  background: rgba(var(--brand) / 0.25);
+}
+
+@theme inline {
+  --color-background: rgb(var(--bg0));
+  --color-foreground: rgb(var(--fg));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Utilities */
+@layer utilities {
+  .card {
+    @apply rounded-[var(--radius)] border border-white/10 bg-white/70 dark:bg-white/5 backdrop-blur-xl shadow-[0_10px_30px_-16px_rgba(0,0,0,0.45)];
+  }
+  .card-hover {
+    @apply transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_44px_-24px_rgba(0,0,0,0.55)];
+  }
+  /* .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(135deg, rgb(var(--brand)), rgb(var(--brand2)));
+  }
+  .btn-ghost {
+    @apply btn border border-white/15 bg-white/40 dark:bg-white/5 hover:bg-white/60 dark:hover:bg-white/10;
+  } */
+  .input {
+    @apply w-full rounded-xl border border-white/15 bg-white/50 dark:bg-white/5 px-4 py-2 text-sm outline-none focus:ring-2;
+    --tw-ring-color: rgba(var(--ring) / 0.45);
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/40 dark:bg-white/5 px-3 py-1 text-xs font-medium;
+  }
+  .skeleton {
+    @apply relative overflow-hidden rounded-xl bg-black/5 dark:bg-white/10;
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-60%);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
+    animation: shimmer 1.2s infinite;
+  }
+
+  /* Tailwind v4 doesn't ship line-clamp by default; define the common ones we use. */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(60%);
+  }
+}
