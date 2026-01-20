@@ -140,7 +140,7 @@ export default function BookDetailPage() {
           className="card overflow-hidden"
         >
           <div className="relative">
-            <div className="aspect-[16/10] w-full overflow-hidden bg-white/30 dark:bg-white/5">
+            <div className="aspect-[16/10] w-full overflow-hidden bg-[rgb(var(--bg1))] dark:bg-slate-900">
               {b.book_img_url ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={b.book_img_url} alt={b.title} className="h-full w-full object-cover" />
@@ -214,7 +214,7 @@ export default function BookDetailPage() {
             </div>
 
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+              <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 dark:bg-slate-900">
                 <div className="flex items-center gap-2 text-xs text-[rgb(var(--muted))]">
                   <Star className="h-4 w-4" /> Rating
                 </div>
@@ -223,7 +223,7 @@ export default function BookDetailPage() {
                 </div>
                 <div className="text-xs text-[rgb(var(--muted))]">from {stats ? stats.ratingCount : "—"} ratings</div>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+              <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 dark:bg-slate-900">
                 <div className="flex items-center gap-2 text-xs text-[rgb(var(--muted))]">
                   <MessageSquare className="h-4 w-4" /> Reviews
                 </div>
@@ -237,7 +237,7 @@ export default function BookDetailPage() {
                 <div className="text-sm text-[rgb(var(--muted))]">No reviews yet.</div>
               ) : (
                 reviews.map((r) => (
-                  <div key={r.review_id} className="rounded-2xl border border-white/10 bg-white/50 p-4 text-sm dark:bg-white/5">
+                  <div key={r.review_id} className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 text-sm dark:bg-slate-900">
                     <div className="text-xs text-[rgb(var(--muted))]">@{r.Reviewer?.username ?? "reviewer"}</div>
                     <div className="mt-1">{r.review}</div>
                   </div>

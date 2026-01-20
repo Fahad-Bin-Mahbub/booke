@@ -32,8 +32,8 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
                 active
-                  ? "bg-white/70 dark:bg-white/10"
-                  : "hover:bg-white/60 dark:hover:bg-white/5"
+                  ? "bg-[rgb(var(--bg1))] ring-1 ring-[rgb(var(--border))]"
+                  : "hover:bg-[rgb(var(--bg1))]"
               )}
             >
               <Icon className="h-4 w-4" />

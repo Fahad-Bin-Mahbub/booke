@@ -36,7 +36,7 @@ export function DashboardShell({ title, children }: { title: string; children: R
             );
           })}
         </nav>
-        <div className="mt-4 rounded-2xl border border-white/10 bg-white/40 p-3 text-xs text-[rgb(var(--muted))] dark:bg-white/5">
+        <div className="mt-4 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-3 text-xs text-[rgb(var(--muted))] dark:bg-slate-900">
           <div className="flex items-center gap-2 font-medium text-[rgb(var(--fg))]">
             <Settings className="h-4 w-4" /> Pro tips
           </div>

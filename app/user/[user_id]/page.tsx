@@ -159,7 +159,7 @@ export default function UserProfilePage() {
           className="card p-6"
         >
           <div className="flex items-start gap-4">
-            <div className="grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/50 dark:bg-white/5">
+            <div className="grid h-14 w-14 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] dark:bg-slate-900">
               <User2 className="h-6 w-6" />
             </div>
             <div className="min-w-0">
@@ -170,14 +170,14 @@ export default function UserProfilePage() {
           </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+            <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 dark:bg-slate-900">
               <div className="flex items-center gap-2 text-xs text-[rgb(var(--muted))]">
                 <Star className="h-4 w-4" /> Rating
               </div>
               <div className="mt-1 text-2xl font-semibold">{stats ? stats.averageRating.toFixed(1) : "—"}</div>
               <div className="text-xs text-[rgb(var(--muted))]">from {stats ? stats.ratingCount : "—"} ratings</div>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+            <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 dark:bg-slate-900">
               <div className="text-xs text-[rgb(var(--muted))]">Listings</div>
               <div className="mt-1 text-2xl font-semibold">{booksQ.data ? booksQ.data.length : "—"}</div>
               <div className="text-xs text-[rgb(var(--muted))]">books posted</div>
@@ -186,7 +186,7 @@ export default function UserProfilePage() {
 
           {profile?.user_id !== u.user_id ? (
             <div className="mt-6 grid gap-4">
-              <div className="rounded-2xl border border-white/10 bg-white/50 p-4 text-sm dark:bg-white/5">
+              <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 text-sm dark:bg-slate-900">
                 <div className="font-semibold">Leave a rating</div>
                 <p className="mt-1 text-xs text-[rgb(var(--muted))]">You can only rate if you have a direct transaction link.</p>
 
@@ -204,7 +204,7 @@ export default function UserProfilePage() {
                 </form>
               </div>
 
-              <div className="rounded-2xl border border-white/10 bg-white/50 p-4 text-sm dark:bg-white/5">
+              <div className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 text-sm dark:bg-slate-900">
                 <div className="flex items-center gap-2 font-semibold">
                   <MessageSquarePlus className="h-4 w-4" /> Leave a review
                 </div>
@@ -237,7 +237,7 @@ export default function UserProfilePage() {
                 <div className="text-sm text-[rgb(var(--muted))]">No reviews yet.</div>
               ) : (
                 (reviewsQ.data ?? []).slice(0, 6).map((r) => (
-                  <div key={r.review_id} className="rounded-2xl border border-white/10 bg-white/50 p-4 text-sm dark:bg-white/5">
+                  <div key={r.review_id} className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 text-sm dark:bg-slate-900">
                     <div className="text-xs text-[rgb(var(--muted))]">@{r.Reviewer?.username ?? "reviewer"}</div>
                     <div className="mt-1">{r.review}</div>
                   </div>

@@ -105,7 +105,7 @@ export default function AddBookPage() {
         transition={{ duration: 0.25 }}
         className="card p-6"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/40 px-3 py-1 text-xs font-medium dark:bg-white/5">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] px-3 py-1 text-xs font-medium dark:bg-slate-900">
           <Sparkles className="h-4 w-4" />
           New listing
         </div>
@@ -116,7 +116,7 @@ export default function AddBookPage() {
       <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="card p-6">
           <div className="text-sm font-semibold">Cover preview</div>
-          <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-white/40 dark:bg-white/5">
+          <div className="mt-4 overflow-hidden rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] dark:bg-slate-900">
             <div className="aspect-[16/12]">
               {preview ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -124,7 +124,7 @@ export default function AddBookPage() {
               ) : (
                 <div className="grid h-full w-full place-items-center">
                   <div className="grid gap-2 text-center">
-                    <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-white/10 bg-white/50 dark:bg-white/5">
+                    <div className="mx-auto grid h-12 w-12 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] dark:bg-slate-900">
                       <ImagePlus className="h-5 w-5" />
                     </div>
                     <div className="text-sm font-medium">Upload a cover</div>

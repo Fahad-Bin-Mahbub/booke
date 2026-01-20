@@ -61,7 +61,7 @@ export function BookCard({ book, wished, onWishedChange }: { book: Book; wished?
       className="card card-hover overflow-hidden"
     >
       <div className="relative">
-        <div className="aspect-[16/10] w-full overflow-hidden bg-white/30 dark:bg-white/5">
+        <div className="aspect-[16/10] w-full overflow-hidden bg-[rgb(var(--bg1))] dark:bg-slate-900">
           {book.book_img_url ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={book.book_img_url} alt={book.title} className="h-full w-full object-cover" />

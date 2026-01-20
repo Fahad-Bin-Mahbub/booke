@@ -11,7 +11,7 @@ export function EmptyState({
 }) {
   return (
     <div className="card p-8 text-center">
-      <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-white/40 dark:bg-white/10">
+      <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))]">
         <Sparkles className="h-5 w-5" />
       </div>
       <div className="text-base font-semibold">{title}</div>

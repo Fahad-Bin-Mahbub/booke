@@ -36,7 +36,7 @@ export default function OrdersPage() {
         transition={{ duration: 0.25 }}
         className="card p-6"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/40 px-3 py-1 text-xs font-medium dark:bg-white/5">
+        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] px-3 py-1 text-xs font-medium dark:bg-slate-900">
           <Sparkles className="h-4 w-4" />
           My orders
         </div>

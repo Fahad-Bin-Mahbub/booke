@@ -63,7 +63,7 @@ export function Modal({
             exit={{ y: 8, opacity: 0, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 280, damping: 22 }}
           >
-            <div className="flex items-start justify-between gap-4 border-b border-white/10 px-5 py-4">
+            <div className="flex items-start justify-between gap-4 border-b border-[rgb(var(--border))] px-5 py-4">
               <div>
                 <div className="text-base font-semibold tracking-tight">{title}</div>
                 {description ? (
@@ -77,7 +77,7 @@ export function Modal({
 
             <div className="px-5 py-4">{children}</div>
 
-            {footer ? <div className="border-t border-white/10 px-5 py-4">{footer}</div> : null}
+            {footer ? <div className="border-t border-[rgb(var(--border))] px-5 py-4">{footer}</div> : null}
           </motion.div>
         </motion.div>
       ) : null}

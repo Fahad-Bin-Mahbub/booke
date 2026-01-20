@@ -29,7 +29,7 @@ function StatCard({
           <div className="mt-1 text-3xl font-semibold tracking-tight">{value}</div>
           <div className="mt-1 text-xs text-[rgb(var(--muted))]">{hint}</div>
         </div>
-        <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/50 dark:bg-white/5">
+        <div className="grid h-10 w-10 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))]">
           {icon}
         </div>
       </div>
@@ -73,12 +73,8 @@ export default function DashboardHome() {
         transition={{ duration: 0.25 }}
         className="card relative overflow-hidden p-6"
       >
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-[rgba(var(--brand)/0.18)] blur-3xl" />
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[rgba(var(--brand2)/0.16)] blur-3xl" />
-        </div>
         <div className="relative">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/40 px-3 py-1 text-xs font-medium dark:bg-white/5">
+          <div className="chip chip-brand">
             <Sparkles className="h-4 w-4" />
             Dashboard
           </div>
@@ -142,13 +138,13 @@ export default function DashboardHome() {
         <div className="card p-6">
           <div className="text-sm font-semibold">How it works</div>
           <ol className="mt-4 grid gap-3 text-sm text-[rgb(var(--muted))]">
-            <li className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+            <li className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4">
               <span className="font-semibold text-[rgb(var(--fg))]">1.</span> Add a listing with photo + type (Sale/Loan/Giveaway).
             </li>
-            <li className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+            <li className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4">
               <span className="font-semibold text-[rgb(var(--fg))]">2.</span> Buyers place orders; sellers confirm or discard.
             </li>
-            <li className="rounded-2xl border border-white/10 bg-white/50 p-4 dark:bg-white/5">
+            <li className="rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4">
               <span className="font-semibold text-[rgb(var(--fg))]">3.</span> After a transaction, leave rating + review to build trust.
             </li>
           </ol>

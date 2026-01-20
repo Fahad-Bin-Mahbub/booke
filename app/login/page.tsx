@@ -51,14 +51,9 @@ export default function LoginPage() {
         transition={{ duration: 0.25 }}
         className="card relative overflow-hidden p-8"
       >
-        <div className="absolute inset-0">
-          <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-[rgba(var(--brand)/0.18)] blur-3xl" />
-          <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-[rgba(var(--brand2)/0.16)] blur-3xl" />
-          <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-[rgba(var(--mint)/0.14)] blur-3xl" />
-        </div>
 
         <div className="relative">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/40 px-3 py-1 text-xs font-medium dark:bg-white/5">
+          <div className="chip chip-brand">
             <Sparkles className="h-4 w-4" />
             Vibrant, modern UI
           </div>
@@ -67,17 +62,17 @@ export default function LoginPage() {
             Use your account to post books, manage orders, and keep a wishlist.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-white/50 p-4 text-sm dark:bg-white/5">
+          <div className="mt-6 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] p-4 text-sm">
             <div className="font-semibold">Demo accounts</div>
             <div className="mt-2 grid gap-2 text-xs text-[rgb(var(--muted))]">
               <div>
-                <span className="font-mono">alice@example.com</span> · password <span className="font-mono">password123</span>
+                <span className="font-mono">alice@example.com</span> · password <span className="kbd">password123</span>
               </div>
               <div>
-                <span className="font-mono">bob@example.com</span> · password <span className="font-mono">password123</span>
+                <span className="font-mono">bob@example.com</span> · password <span className="kbd">password123</span>
               </div>
               <div>
-                <span className="font-mono">carla@example.com</span> · password <span className="font-mono">password123</span>
+                <span className="font-mono">carla@example.com</span> · password <span className="kbd">password123</span>
               </div>
             </div>
           </div>
@@ -93,7 +88,7 @@ export default function LoginPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
           <div>
             <label className="text-xs text-[rgb(var(--muted))]">Email</label>
-            <div className="mt-1 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/60 px-3 py-2 dark:bg-white/5">
+            <div className="mt-1 flex items-center gap-2 rounded-2xl border border-[rgb(var(--border))] bg-white px-3 py-2">
               <AtSign className="h-4 w-4 opacity-70" />
               <input
                 {...register("email")}
@@ -107,7 +102,7 @@ export default function LoginPage() {
 
           <div>
             <label className="text-xs text-[rgb(var(--muted))]">Password</label>
-            <div className="mt-1 flex items-center gap-2 rounded-2xl border border-white/10 bg-white/60 px-3 py-2 dark:bg-white/5">
+            <div className="mt-1 flex items-center gap-2 rounded-2xl border border-[rgb(var(--border))] bg-white px-3 py-2">
               <Lock className="h-4 w-4 opacity-70" />
               <input
                 {...register("password")}

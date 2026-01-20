@@ -24,14 +24,14 @@ export function TopNav() {
   const { user, token, logout } = useAuth();
 
   return (
-    <div className="sticky top-0 z-50 border-b border-white/10 bg-white/40 backdrop-blur-xl dark:bg-black/10">
+    <div className="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-white shadow-sm dark:bg-slate-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
           <motion.div
             initial={{ rotate: -6, scale: 0.95 }}
             animate={{ rotate: 0, scale: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/60 shadow-sm dark:bg-white/5"
+            className="grid h-10 w-10 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-white shadow-sm dark:bg-slate-900"
           >
             <Sparkles className="h-5 w-5" />
           </motion.div>
@@ -58,8 +58,8 @@ export function TopNav() {
           )}
 
           {user ? (
-            <div className="hidden items-center gap-2 rounded-2xl border border-white/10 bg-white/50 px-3 py-2 text-sm dark:bg-white/5 sm:flex">
-              <div className="h-7 w-7 overflow-hidden rounded-xl border border-white/10 bg-white/40">
+            <div className="hidden items-center gap-2 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] px-3 py-2 text-sm dark:bg-slate-900 sm:flex">
+              <div className="h-7 w-7 overflow-hidden rounded-xl border border-[rgb(var(--border))] bg-white">
                 {/* placeholder avatar */}
                 <div className="h-full w-full bg-gradient-to-br from-[rgba(var(--brand)/0.35)] to-[rgba(var(--brand2)/0.35)]" />
               </div>
