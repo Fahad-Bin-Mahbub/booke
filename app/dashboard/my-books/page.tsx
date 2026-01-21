@@ -143,35 +143,50 @@ export default function MyBooksPage() {
           }
         />
       ) : (
-        <div className="grid gap-3">
-          {books.map((b) => (
-            <div key={b.book_id} className="card p-5">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <div className="truncate text-base font-semibold">{b.title}</div>
-                    {b.transaction ? <span className="chip">Transacted</span> : <span className="chip">Active</span>}
-                    <span className="chip">{b.is_for_sale ? "Sale" : b.is_for_loan ? "Loan" : "Giveaway"}</span>
-                    {b.genre ? <span className="chip">{b.genre}</span> : null}
-                  </div>
-                  <div className="mt-1 text-sm text-[rgb(var(--muted))]">{b.author ? `by ${b.author}` : "Unknown author"} · ID {b.book_id}</div>
-                  {b.description ? <div className="mt-2 line-clamp-2 text-sm text-[rgb(var(--muted))]">{b.description}</div> : null}
-                </div>
+		<div className="grid gap-3">
+		  {books.map((b) => {
+			const typeLabel = b.is_for_sale ? "Sale" : b.is_for_loan ? "Loan" : "Giveaway";
+			const typeBadge = typeLabel === "Sale" ? "badge-brand" : typeLabel === "Loan" ? "badge-mint" : "badge-pink";
+			return (
+			  <div key={b.book_id} className="card p-4 sm:p-5">
+				<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+				  <div className="flex min-w-0 gap-4">
+					<div className="h-24 w-20 shrink-0 overflow-hidden rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))]">
+					  {b.book_img_url ? (
+						// eslint-disable-next-line @next/next/no-img-element
+						<img src={b.book_img_url} alt={b.title} className="h-full w-full object-cover" />
+					  ) : (
+						<div className="h-full w-full bg-gradient-to-br from-[rgba(var(--brand)/0.18)] via-[rgba(var(--mint)/0.14)] to-[rgba(var(--brand2)/0.16)]" />
+					  )}
+					</div>
 
-                <div className="flex shrink-0 gap-2">
-                  <button className="btn btn-ghost" onClick={() => openEdit(b)}>
-                    <Pencil className="h-4 w-4" />
-                    Edit
-                  </button>
-                  <button className="btn btn-ghost" onClick={() => del.mutate(b.book_id)} disabled={del.isPending}>
-                    <Trash2 className="h-4 w-4" />
-                    Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+					<div className="min-w-0">
+					  <div className="flex flex-wrap items-center gap-2">
+						<div className="truncate text-base font-semibold">{b.title}</div>
+						<span className={`badge ${b.transaction ? "badge-good" : ""}`}>{b.transaction ? "Transacted" : "Active"}</span>
+						<span className={`badge ${typeBadge}`}>{typeLabel}</span>
+						{b.genre ? <span className="badge">{b.genre}</span> : null}
+					  </div>
+					  <div className="mt-1 text-sm text-[rgb(var(--muted))]">{b.author ? `by ${b.author}` : "Unknown author"} · ID {b.book_id}</div>
+					  {b.description ? <div className="mt-2 line-clamp-2 text-sm text-[rgb(var(--muted))]">{b.description}</div> : null}
+					</div>
+				  </div>
+
+				  <div className="flex shrink-0 gap-2">
+					<button className="btn btn-ghost" onClick={() => openEdit(b)}>
+					  <Pencil className="h-4 w-4" />
+					  Edit
+					</button>
+					<button className="btn btn-ghost" onClick={() => del.mutate(b.book_id)} disabled={del.isPending}>
+					  <Trash2 className="h-4 w-4" />
+					  Delete
+					</button>
+				  </div>
+				</div>
+			  </div>
+			);
+		  })}
+		</div>
       )}
 
       <Modal

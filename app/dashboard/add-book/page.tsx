@@ -33,7 +33,7 @@ export default function AddBookPage() {
     queryKey: ["genres"],
     queryFn: () => apiFetch<Genre[]>("/api/genre/all"),
   });
-  console.log(genres)
+  // console.log(genres)
 
   const {
     register,

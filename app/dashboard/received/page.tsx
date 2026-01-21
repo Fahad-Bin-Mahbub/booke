@@ -13,9 +13,9 @@ import type { Order } from "@/lib/types";
 import { EmptyState } from "@/components/EmptyState";
 
 function statusLabel(is_confirmed: number) {
-  if (is_confirmed === 1) return { label: "Confirmed", cls: "chip" };
-  if (is_confirmed === 2) return { label: "Discarded", cls: "chip" };
-  return { label: "Pending", cls: "chip" };
+  if (is_confirmed === 1) return { label: "Confirmed", cls: "badge badge-good" };
+  if (is_confirmed === 2) return { label: "Discarded", cls: "badge badge-bad" };
+  return { label: "Pending", cls: "badge badge-warn" };
 }
 
 export default function ReceivedOrdersPage() {
@@ -99,23 +99,34 @@ export default function ReceivedOrdersPage() {
         <div className="grid gap-3">
           {orders.map((o) => {
             const s = statusLabel(o.is_confirmed);
+			const cover = (o as any)?.Book?.book_img_url as string | undefined;
+			const title = o.Book?.title ?? `Book #${o.book_id}`;
             const canAct = o.is_confirmed === 0;
             return (
-              <div key={o.order_id} className="card p-5">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <div className="truncate text-base font-semibold">{o.Book?.title ?? `Book #${o.book_id}`}</div>
-                      <span className={s.cls}>{s.label}</span>
-                      {o.Book?.genre ? <span className="chip">{o.Book.genre}</span> : null}
-                    </div>
-                    <div className="mt-1 text-sm text-[rgb(var(--muted))]">
-                      Order #{o.order_id} · buyer {o.buyer_id} · listing #{o.book_id}
-                    </div>
-                    {o.Book?.description ? (
-                      <div className="mt-2 line-clamp-2 text-sm text-[rgb(var(--muted))]">{o.Book.description}</div>
-                    ) : null}
-                  </div>
+				<div key={o.order_id} className="card p-4 sm:p-5">
+					<div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+						<div className="flex min-w-0 gap-4">
+							<div className="h-24 w-20 shrink-0 overflow-hidden rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))]">
+								{cover ? (
+									// eslint-disable-next-line @next/next/no-img-element
+									<img src={cover} alt={title} className="h-full w-full object-cover" />
+								) : (
+									<div className="h-full w-full bg-gradient-to-br from-[rgba(var(--brand)/0.18)] via-[rgba(var(--mint)/0.14)] to-[rgba(var(--brand2)/0.16)]" />
+								)}
+							</div>
+
+							<div className="min-w-0">
+								<div className="flex flex-wrap items-center gap-2">
+									<div className="truncate text-base font-semibold">{title}</div>
+									<span className={s.cls}>{s.label}</span>
+									{o.Book?.genre ? <span className="badge">{o.Book.genre}</span> : null}
+								</div>
+								<div className="mt-1 text-sm text-[rgb(var(--muted))]">Order #{o.order_id} · buyer {o.buyer_id} · listing #{o.book_id}</div>
+								{o.Book?.description ? (
+									<div className="mt-2 line-clamp-2 text-sm text-[rgb(var(--muted))]">{o.Book.description}</div>
+								) : null}
+							</div>
+						</div>
 
                   <div className="flex shrink-0 flex-wrap gap-2">
                     <Link href={`/book/${o.book_id}`} className="btn btn-ghost">
