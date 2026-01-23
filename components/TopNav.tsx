@@ -12,7 +12,11 @@ function NavLink({ href, icon, children }: { href: string; icon: React.ReactNode
   return (
     <Link
       href={href}
-      className={`btn btn-ghost !px-3 !py-2 ${active ? "ring-2 ring-[rgba(var(--ring)/0.35)]" : ""}`}
+      className={
+        `inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold transition ` +
+        `hover:bg-[rgb(var(--bg1))] ` +
+        (active ? "bg-[rgb(var(--bg1))] ring-1 ring-[rgba(var(--ring)/0.25)]" : "")
+      }
     >
       <span className="opacity-80">{icon}</span>
       <span className="hidden sm:inline">{children}</span>
@@ -24,14 +28,14 @@ export function TopNav() {
   const { user, token, logout } = useAuth();
 
   return (
-    <div className="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-white shadow-sm dark:bg-slate-950">
+    <div className="sticky top-0 z-50 border-b border-[rgb(var(--border))] bg-white dark:bg-slate-950">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
         <Link href="/" className="group flex items-center gap-3">
           <motion.div
             initial={{ rotate: -6, scale: 0.95 }}
             animate={{ rotate: 0, scale: 1 }}
             transition={{ type: "spring", stiffness: 260, damping: 18 }}
-            className="grid h-10 w-10 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-white shadow-sm dark:bg-slate-900"
+            className="grid h-10 w-10 place-items-center rounded-2xl border border-[rgb(var(--border))] bg-gradient-to-br from-[rgba(var(--brand)/0.12)] via-white to-[rgba(var(--mint)/0.12)] shadow-sm"
           >
             <Sparkles className="h-5 w-5" />
           </motion.div>
@@ -58,7 +62,7 @@ export function TopNav() {
           )}
 
           {user ? (
-            <div className="hidden items-center gap-2 rounded-2xl border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] px-3 py-2 text-sm dark:bg-slate-900 sm:flex">
+            <div className="hidden items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-white px-3 py-2 text-sm shadow-sm sm:flex">
               <div className="h-7 w-7 overflow-hidden rounded-xl border border-[rgb(var(--border))] bg-white">
                 {/* placeholder avatar */}
                 <div className="h-full w-full bg-gradient-to-br from-[rgba(var(--brand)/0.35)] to-[rgba(var(--brand2)/0.35)]" />
