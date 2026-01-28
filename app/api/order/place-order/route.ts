@@ -23,6 +23,10 @@ export async function POST(req: Request) {
   if (book.transaction) return err("The book is already transacted", 400);
 
   const buyer_id = auth.user.user_id;
+  
+  // Prevent ordering own book
+  if (book.user_id === buyer_id) return err("Cannot order your own book", 400);
+  
   const existing = await Order.findOne({ book_id, buyer_id }).lean();
   if (existing) return json({ message: "Order Already Placed", order: null });
 
