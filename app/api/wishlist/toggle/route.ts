@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/db";
 import { err, json } from "@/lib/api/response";
 import { getAuthUser } from "@/lib/auth/server";
 import { Wishlist } from "@/models/Wishlist";
+import { Book } from "@/models/Book";
 import { parseBody } from "@/lib/api/body";
 import { z } from "zod";
 
@@ -15,6 +16,12 @@ export async function POST(req: Request) {
   if (!body.ok) return err(body.message, body.status);
   const book_id = Number(body.data.book_id);
   if (!Number.isFinite(book_id)) return err("Invalid book", 400);
+
+  // Prevent wishlisting own books
+  const book = await Book.findOne({ book_id }).lean();
+  if (book && book.user_id === auth.user.user_id) {
+    return err("Cannot wishlist your own book", 400);
+  }
 
   const existing = await Wishlist.findOne({ user_id: auth.user.user_id, book_id });
   if (existing) {
