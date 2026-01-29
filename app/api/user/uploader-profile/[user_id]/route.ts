@@ -3,12 +3,16 @@ import { err, json } from "@/lib/api/response";
 import { getAuthUser } from "@/lib/auth/server";
 import { User } from "@/models/User";
 
-export async function GET(req: Request, { params }: { params: { user_id: string } }) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ user_id: string }> }
+) {
   await connectDB();
   const auth = getAuthUser(req);
   if (!auth.ok) return err(auth.message, auth.status);
 
-  const id = Number(params.user_id);
+  const { user_id: userIdStr } = await params;
+  const id = Number(userIdStr);
   if (!Number.isFinite(id)) return err("Invalid user ID", 400);
 
   const user = await User.findOne({ user_id: id }, { password: 0 }).lean();
