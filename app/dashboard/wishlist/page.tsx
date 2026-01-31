@@ -12,6 +12,9 @@ import type { WishlistItem } from "@/lib/types";
 import { EmptyState } from "@/components/EmptyState";
 import { BookCard } from "@/components/BookCard";
 import { BookCardSkeleton } from "@/components/BookCardSkeleton";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
 
 export default function WishlistPage() {
   const qc = useQueryClient();
@@ -28,34 +31,43 @@ export default function WishlistPage() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <motion.section
-        initial={{ opacity: 0, y: 8 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.25 }}
-        className="card p-6"
+        transition={{ duration: 0.3 }}
+        className="relative overflow-hidden rounded-2xl border border-[rgb(var(--border))] bg-gradient-to-br from-white to-[rgba(var(--brand2)/0.03)] p-6 dark:from-slate-900"
       >
-        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--border))] bg-[rgb(var(--bg1))] px-3 py-1 text-xs font-medium dark:bg-slate-900">
-          <Sparkles className="h-4 w-4" />
+        <Badge variant="pink" className="mb-3">
+          <Heart className="h-3 w-3" />
           Wishlist
-        </div>
-        <h1 className="mt-3 text-2xl font-semibold tracking-tight">Your saved favorites</h1>
-        <p className="mt-1 text-sm text-[rgb(var(--muted))]">Quickly revisit listings you want to buy, loan, or pick up later.</p>
+        </Badge>
+        <h1 className="text-2xl font-bold tracking-tight">Your Saved Favorites</h1>
+        <p className="mt-1 text-sm text-[rgb(var(--muted))]">
+          Quickly revisit listings you want to buy, loan, or pick up later.
+        </p>
+        {items.length > 0 && (
+          <div className="mt-4">
+            <Badge variant="brand">{items.length} saved</Badge>
+          </div>
+        )}
       </motion.section>
 
+      {/* Grid */}
       {wishQ.isLoading ? (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 9 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <BookCardSkeleton key={i} />
           ))}
         </div>
       ) : items.length === 0 ? (
         <EmptyState
+          icon={<Heart className="h-10 w-10 text-[rgb(var(--brand2))]" />}
           title="Nothing saved yet"
-          description="Tap the heart icon on any listing to save it here."
+          description="Tap the heart icon on any listing to save it here for later."
           action={
-            <Link href="/" className="btn btn-primary">
-              <Search className="h-4 w-4" />
-              Browse books
+            <Link href="/">
+              <Button leftIcon={<Search className="h-4 w-4" />}>Browse Books</Button>
             </Link>
           }
         />
@@ -74,19 +86,31 @@ export default function WishlistPage() {
         </div>
       )}
 
-      {items.length > 0 ? (
-        <div className="card p-5">
+      {/* Pro Tip */}
+      {items.length > 0 && (
+        <Card className="bg-gradient-to-br from-[rgba(var(--brand2)/0.05)] to-[rgba(var(--brand)/0.03)]">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm font-semibold">Pro tip</div>
-              <div className="mt-1 text-sm text-[rgb(var(--muted))]">
-                You can remove an item anytime — just tap the <span className="inline-flex items-center gap-1 font-medium text-[rgb(var(--fg))]"><Heart className="h-4 w-4" />heart</span> again.
+            <div className="flex items-start gap-3">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-[rgb(var(--brand2))] to-[rgb(var(--brand))]">
+                <Sparkles className="h-4 w-4 text-white" />
+              </div>
+              <div>
+                <div className="text-sm font-semibold">Pro Tip</div>
+                <p className="mt-0.5 text-xs text-[rgb(var(--muted))]">
+                  Remove items anytime by tapping the{" "}
+                  <span className="inline-flex items-center gap-1 font-medium text-[rgb(var(--brand2))]">
+                    <Heart className="h-3 w-3" /> heart
+                  </span>{" "}
+                  icon again.
+                </p>
               </div>
             </div>
-            <Link href="/" className="btn btn-ghost">Explore more</Link>
+            <Link href="/">
+              <Button variant="ghost" size="sm">Explore More</Button>
+            </Link>
           </div>
-        </div>
-      ) : null}
+        </Card>
+      )}
     </div>
   );
 }
