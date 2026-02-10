@@ -36,8 +36,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type={type}
             className={clsx(
               "input",
-              leftIcon && "pl-10",
-              rightIcon && "pr-10",
+              leftIcon && "!pl-10",
+              rightIcon && "!pr-10",
               error && "border-[rgb(var(--bad))] focus:ring-[rgba(var(--bad)/0.25)]",
               className
             )}
